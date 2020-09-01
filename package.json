@@ -1,0 +1,29 @@
+{
+  "name": "mobile-metrics",
+  "version": "1.0.0",
+  "description": "Bootstrap for a CRUD backend system targeted at mobile apps metrics",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "debug": "nodemon --inspect index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matsoftware/mobile-metrics.git"
+  },
+  "author": "Mattia Campolese",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matsoftware/mobile-metrics/issues"
+  },
+  "homepage": "https://github.com/matsoftware/mobile-metrics#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "sequelize": "^6.3.5",
+    "tedious": "^9.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
