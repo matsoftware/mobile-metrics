@@ -1,13 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
     const AppSize = sequelize.define("app_size", {
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       total_uncompressed_size: {
-        type: Sequelize.NUMERIC
+        type: Sequelize.DOUBLE,
+        allowNull: false
       },
       total_universal_size: {
-        type: Sequelize.NUMERIC
+        type: Sequelize.DOUBLE,
+        allowNull: false
+      },
+      metadata: {
+        type: Sequelize.STRING,
+        allowNull: true
       }
     });
   
