@@ -18,4 +18,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// MODELS
+
+db.AppSize = require("./app_size.model.js")(sequelize, Sequelize);
+
 module.exports = db;
