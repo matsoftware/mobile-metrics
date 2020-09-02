@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ROUTES
 
 require("./app/routes/app_size.routes")(app);
+require("./app/routes/code_metrics.routes")(app);
 
 app.get('/', (req, res) => {
   res.send('<h1>Welcome to mobile-metrics interface</h1>');

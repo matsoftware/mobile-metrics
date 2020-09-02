@@ -13,7 +13,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/backend/index.js",
-            "restart": false
+            "restart": true
         }
     ]
 }

@@ -1,100 +1,100 @@
 const db = require("../models");
-const AppSize = db.AppSize;
+const CodeMetrics = db.CodeMetrics;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new AppSize
+// Create and Save a new CodeMetrics
 exports.create = (req, res) => {
-  // Save AppSize in the database
-  AppSize.create(req.body)
+  // Save CodeMetrics in the database
+  CodeMetrics.create(req.body)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the AppSize."
+          err.message || "Some error occurred while creating the CodeMetrics."
       });
     });
 };
 
-// Retrieve all AppSizes from the database.
+// Retrieve all CodeMetricss from the database.
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
-  AppSize.findAll({ where: condition })
+  CodeMetrics.findAll({ where: condition })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving AppSizes."
+          err.message || "Some error occurred while retrieving CodeMetricss."
       });
     });
 };
 
-// Find a single AppSize with an id
+// Find a single CodeMetrics with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  AppSize.findByPk(id)
+  CodeMetrics.findByPk(id)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving AppSize with id=" + id
+        message: "Error retrieving CodeMetrics with id=" + id
       });
     });
 };
 
-// Update a AppSize by the id in the request
+// Update a CodeMetrics by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  AppSize.update(req.body, {
+  CodeMetrics.update(req.body, {
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "AppSize was updated successfully."
+          message: "CodeMetrics was updated successfully."
         });
       } else {
         res.send({
-          message: `Cannot update AppSize with id=${id}. Maybe AppSize was not found or req.body is empty`
+          message: `Cannot update CodeMetrics with id=${id}. Maybe CodeMetrics was not found or req.body is empty`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating AppSize with id=" + id
+        message: "Error updating CodeMetrics with id=" + id
       });
     });
 };
 
-// Delete a AppSize with the specified id in the request
+// Delete a CodeMetrics with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  AppSize.destroy({
+  CodeMetrics.destroy({
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "AppSize was deleted successfully!"
+          message: "CodeMetrics was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete AppSize with id=${id}. Maybe AppSize was not found.`
+          message: `Cannot delete CodeMetrics with id=${id}. Maybe CodeMetrics was not found.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete AppSize with id=" + id
+        message: "Could not delete CodeMetrics with id=" + id
       });
     });
 };

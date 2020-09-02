@@ -21,5 +21,6 @@ db.sequelize = sequelize;
 // MODELS
 
 db.AppSize = require("./app_size.model.js")(sequelize, Sequelize);
+db.CodeMetrics = require("./code_metrics.model.js")(sequelize, Sequelize);
 
 module.exports = db;
