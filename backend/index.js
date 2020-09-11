@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 // START
 
-db.sequelize.sync({ force: true });
+db.sequelize.sync();
 
 const PORT = process.env.SERVER_PORT || 8080;
 app.listen(PORT, function() {

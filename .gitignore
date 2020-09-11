@@ -63,6 +63,7 @@ typings/
 .node_repl_history
 
 # Output of 'npm pack'
+# Comment this one out to persist packages for offline deployments
 *.tgz
 
 # Yarn Integrity file
