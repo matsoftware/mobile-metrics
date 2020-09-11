@@ -1,11 +1,18 @@
 # mobile-metrics
 Bootstrap for a CRUD backend system targeted at mobile apps metrics.
 
-## Server
+This project aims at creating a end-to-end set of tools to persist and monitor metrics data related to mobile applications. 
 
-All backend logic is inside the `backend` folder. It has been developed using **Node JS 12 LTS** using **MS SQL** as default database (to comply with most of the corporates requirements). 
+It consists of three main parts:
+- **API**: REST API to interact with the database
+- **Dashboard**: Web frontend to visualize the reports over time
+- **Scripts**: Set of Python scripts to analyze mobile app metrics and to store data
 
-You can change the SQL configuration in [backend/app/config/db.config.js](backend/app/config/db.config.js).
+## API
+
+The REST API backend has been developed using **Node JS 12 LTS** using **MS SQL** as default database (to comply with most of the corporates requirements). 
+
+You can change the SQL configuration in [api/app/config/db.config.js](api/app/config/db.config.js).
 
 ### Pre-requisites
 

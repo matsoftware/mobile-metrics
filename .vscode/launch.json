@@ -7,12 +7,12 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Metrics - debug",
+            "name": "Metrics API - debug",
             "protocol": "inspector",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/backend/index.js",
+            "program": "${workspaceFolder}/backend/api/index.js",
             "restart": true
         }
     ]
