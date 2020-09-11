@@ -9,7 +9,7 @@ You can change the SQL configuration in [backend/app/config/db.config.js](backen
 
 ### Pre-requisites
 
-1. Install SQL Server using Docker on Unix: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-linux-2017&pivots=cs1-bash 
+1. Install SQL Server using Docker on Unix: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-linux-2017&pivots=cs1-bash and [Azure Data Studio](https://github.com/microsoft/azuredatastudio/releases/tag/1.21.0) to connect directly to the database
 
 2. Create a `.env` file in the root of the repo with the local database settings:
     ```bash
@@ -32,7 +32,9 @@ You can change the SQL configuration in [backend/app/config/db.config.js](backen
 
     The project is structured to be easily debugged using VS Code with a preconfigured launch command
 
-5. Test the APIs using this Postman collection:
+5. Add a new `User` entry to the `users` table in the database with the `token` that will be matched against the `X-API-Token` value of the API requests
+
+6. Test the APIs using this Postman collection:
 
     [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d0dbb85e24c41bbcfa42)
 
