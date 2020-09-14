@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "${workspaceFolder}/dashboard/venv",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}

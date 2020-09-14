@@ -48,3 +48,11 @@ You can change the SQL configuration in [api/app/config/db.config.js](api/app/co
 ### Development
 
 In order to update dependencies, please make sure check your [Yarn offline](https://classic.yarnpkg.com/blog/2016/11/24/offline-mirror/) configuration.
+
+## Dashboard
+
+The dashboard is built with **Python 3.7.1** using **Dash** and **Plotly Express**.
+
+### Pre-requisites
+
+Install all the needed dependencies by running `./install.sh` from the `dashboard` folder.

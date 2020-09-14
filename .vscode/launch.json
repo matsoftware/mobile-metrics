@@ -12,8 +12,17 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/backend/api/index.js",
+            "program": "${workspaceFolder}/api/index.js",
+            "cwd": "${workspaceFolder}/api",
             "restart": true
+        },
+        {
+            "type": "python",
+            "name": "Metrics dashboard - debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/dashboard/app",
+            "console": "integratedTerminal",
+            "program": "${workspaceFolder}/dashboard/app/app.py"
         }
     ]
 }
