@@ -2,5 +2,5 @@
 
 class DataSourcing(object):
     
-    def fetch_raw_app_size(self, name: str) -> dict:
+    def fetch_raw_app_size(self) -> dict:
         raise NotImplementedError

@@ -12,7 +12,7 @@ API_SECRET = environ.get('API_SECRET')
 
 class APIDataSource(DataSourcing):
 
-    def fetch_raw_app_size(self, name: str) -> dict:
+    def fetch_raw_app_size(self) -> dict:
         return self.__fetch_ipa_size()
 
     # Private
