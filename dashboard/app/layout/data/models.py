@@ -22,8 +22,11 @@ class IPASize(SequelizeModel):
 
     @property
     def uncompressed_size_data(self) -> list:
-        return [self.name, self.createdAt, self.total_uncompressed_size ]
+        return self.__base_reporting_data() + [ self.total_uncompressed_size ]
 
     @property
     def download_size_data(self) -> list:
-        return [self.name, self.createdAt, self.total_universal_size ]
+        return self.__base_reporting_data() + [ self.total_universal_size ]
+
+    def __base_reporting_data(self) -> list:
+        return [self.name, self.createdAt]

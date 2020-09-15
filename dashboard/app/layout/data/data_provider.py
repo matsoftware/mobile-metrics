@@ -36,17 +36,18 @@ class DataProvider(object):
     def fetch_ipa_size(self) -> AppSizeRepresentableData:
         raw_ipa_sizes = self.data_source.fetch_raw_app_size()
         ipa_sizes = [IPASize(** i) for i in raw_ipa_sizes]
-        return (self.__uncompressed_size_data(ipa_sizes), self.__uncompressed_size_data(ipa_sizes))
 
-    # Transforming raw data into representable DataFrame
+        install_data = [i.uncompressed_size_data for i in ipa_sizes]
+        download_data = [i.download_size_data for i in ipa_sizes]
 
-    def __uncompressed_size_data(self, ipa_sizes: List[IPASize]) -> RepresentableData:
+        return (self.__size_data(install_data), self.__size_data(download_data))
+
+    def __size_data(self, data: List[List[str]]) -> RepresentableData:
         representable_keys = [
             DataConstants.app_name(), 
             DataConstants.date(), 
             DataConstants.size_in_mb()
         ]
-        data = [i.uncompressed_size_data for i in ipa_sizes]
         return RepresentableData(
             pd.DataFrame(data, columns=[r.key for r in representable_keys]),
             { rk.key : rk.description for rk in representable_keys }

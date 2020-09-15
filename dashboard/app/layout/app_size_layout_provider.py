@@ -19,15 +19,19 @@ class AppSizesLayoutProvider(LayoutProviding):
             ),
             dcc.Graph(
                 id='APP-DOWNLOAD-SIZE',
-                figure=self.__download_size_figure(download_size_data)
-            )
+                figure=self.__app_size_figure(title='App Download Size trend', rep_data=download_size_data)
+            ),
+            dcc.Graph(
+                id='APP-INSTALL-SIZE',
+                figure=self.__app_size_figure(title='App Install Size trend', rep_data=uncompressed_size_data)
+            ),
         ]
 
-    def __download_size_figure(self, rep_data: RepresentableData) -> px.line:
+    def __app_size_figure(self, title: str, rep_data: RepresentableData) -> px.line:
         return px.line(rep_data.data,
             x=DataConstants.date().key,
             y=DataConstants.size_in_mb().key,
             color=DataConstants.app_name().key,
-            title='App Download Size trend',
+            title=title,
             labels=rep_data.labels
         )
