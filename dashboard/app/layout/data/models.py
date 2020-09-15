@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 from dateutil.parser import parse
 
-class SequelizeModel(object):
-    def __init__(self, createdAt: str, updatedAt: str):
+class TimeSeriesModel(object):
+    def __init__(self, metadata: str, createdAt: str, updatedAt: str):
+        self.metadata = metadata        
         self.createdAt = parse(createdAt) 
         self.updatedAt = parse(updatedAt)
 
@@ -10,23 +11,65 @@ class SequelizeModel(object):
     def created_key() -> str:
         return "createdAt"
 
-class IPASize(SequelizeModel):
+    def base_reporting_data(self) -> list:
+        return [self.name, self.createdAt]
+
+
+class IPASize(TimeSeriesModel):
 
     def __init__(self, id: int, name: float, total_uncompressed_size: float, total_universal_size: str, metadata: str, createdAt: str, updatedAt: str):
-        SequelizeModel.__init__(self, createdAt, updatedAt)
+        TimeSeriesModel.__init__(self, metadata, createdAt, updatedAt)
         self.id = id
         self.name = name
         self.total_uncompressed_size = total_uncompressed_size
         self.total_universal_size = total_universal_size
-        self.metadata = metadata        
 
     @property
     def uncompressed_size_data(self) -> list:
-        return self.__base_reporting_data() + [ self.total_uncompressed_size ]
+        return self.base_reporting_data() + [ self.total_uncompressed_size ]
 
     @property
     def download_size_data(self) -> list:
-        return self.__base_reporting_data() + [ self.total_universal_size ]
+        return self.base_reporting_data() + [ self.total_universal_size ]
 
-    def __base_reporting_data(self) -> list:
-        return [self.name, self.createdAt]
+
+class SourceCodeMetric(TimeSeriesModel):
+
+    def __init__(self, 
+        id: int, 
+        name: float, 
+        deps_test_loc: int, 
+        deps_prod_loc: int, 
+        repo_test_loc: int, 
+        repo_prod_loc: int, 
+        repo_dupl_loc: int,
+        internal_deps: int,
+        external_deps: int,
+        objc_deps: int,
+        abi_stable_deps: int,
+        abi_nonstable_deps: int,
+        metadata: str, 
+        createdAt: str, 
+        updatedAt: str
+    ):
+        TimeSeriesModel.__init__(self, metadata, createdAt, updatedAt)
+        self.id = id
+        self.name = name
+        self.deps_test_loc = deps_test_loc
+        self.deps_prod_loc = deps_prod_loc 
+        self.repo_test_loc = repo_test_loc 
+        self.repo_prod_loc = repo_prod_loc
+        self.repo_dupl_loc = repo_dupl_loc
+        self.internal_deps = internal_deps
+        self.external_deps = external_deps
+        self.objc_deps = objc_deps
+        self.abi_stable_deps = abi_stable_deps
+        self.abi_nonstable_deps = abi_nonstable_deps        
+
+    @property
+    def loc_data(self) -> list:
+        return self.base_reporting_data() + [n/1000 for n in [ self.deps_test_loc, self.deps_prod_loc, self.repo_test_loc, self.repo_prod_loc, self.repo_dupl_loc]]
+
+    @property
+    def deps_data(self) -> list:
+        return self.base_reporting_data() + [ self.internal_deps, self.external_deps ]

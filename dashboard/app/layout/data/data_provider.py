@@ -2,36 +2,20 @@
 
 from .data_sourcing import DataSourcing
 import pandas as pd
-from .models import IPASize
+from .models import IPASize, SourceCodeMetric
 from collections import namedtuple
+from .data_constants import DataConstants, RepresentableKey
 from typing import List
 
-RepresentableKey = namedtuple('RepresentableKey', 'key description')
 RepresentableData = namedtuple('RepresentableData', 'data labels')
 AppSizeRepresentableData = namedtuple('AppSizeRepresentableData', 'uncompressed_size download_size')
-
-class DataConstants(object):
-
-    @staticmethod
-    def app_name() -> RepresentableKey:
-        return RepresentableKey('app_name', 'App name')
-
-    @staticmethod
-    def size_type() -> RepresentableKey:
-        return RepresentableKey('size_type', 'Kind of size')    
-
-    @staticmethod
-    def size_in_mb() -> RepresentableKey:
-        return RepresentableKey('size_in_mb', 'Size in MB')
-
-    @staticmethod
-    def date() -> RepresentableKey:
-        return RepresentableKey('date', 'Sampling date')
-
+CodeMetricsRepresentableData = namedtuple('CodeMetricsRepresentableData', 'loc dependencies')
 
 class DataProvider(object):
     def __init__(self, data_source: DataSourcing):
         self.data_source = data_source
+
+    # App Size
 
     def fetch_ipa_size(self) -> AppSizeRepresentableData:
         raw_ipa_sizes = self.data_source.fetch_raw_app_size()
@@ -48,7 +32,43 @@ class DataProvider(object):
             DataConstants.date(), 
             DataConstants.size_in_mb()
         ]
+        return self.__make_representable_data(data, representable_keys)
+
+    # Code metrics
+    def fetch_code_metrics(self) -> CodeMetricsRepresentableData:
+        raw_metrics_sizes = self.data_source.fetch_code_metrics()
+        metrics_sizes = [SourceCodeMetric(** s) for s in raw_metrics_sizes]
+
+        loc_data = [s.loc_data for s in metrics_sizes]
+        deps_data = [s.deps_data for s in metrics_sizes]
+
+        return (self.__loc_data(loc_data), self.__deps_data(deps_data))
+
+    def __loc_data(self, data: List[List[str]]) -> RepresentableData:
+        representable_keys = [
+            DataConstants.app_name(), 
+            DataConstants.date(), 
+            DataConstants.deps_test_loc(),
+            DataConstants.deps_prod_loc(),
+            DataConstants.repo_test_loc(),
+            DataConstants.repo_prod_loc(),
+            DataConstants.repo_dupl_loc()
+        ]
+        transformed_data = {r.key: [row[ind] for row in data] for ind, r in enumerate(representable_keys)}
+        return self.__make_representable_data(transformed_data, representable_keys, True)
+
+    def __deps_data(self, data: List[List[str]]) -> RepresentableData:
+        representable_keys = [
+            DataConstants.app_name(), 
+            DataConstants.date(), 
+            DataConstants.internal_deps(),
+            DataConstants.external_deps()
+        ]
+        return self.__make_representable_data(data, representable_keys)
+
+    # Private
+    def __make_representable_data(self, data, repr_keys: List[RepresentableKey], pass_raw_data: bool = False) -> RepresentableData:
         return RepresentableData(
-            pd.DataFrame(data, columns=[r.key for r in representable_keys]),
-            { rk.key : rk.description for rk in representable_keys }
+            data if pass_raw_data else pd.DataFrame(data, columns=[r.key for r in repr_keys]),
+            { rk.key : rk.description for rk in repr_keys }
         )

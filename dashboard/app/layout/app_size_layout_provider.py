@@ -3,7 +3,8 @@
 import dash_core_components as dcc
 import dash_html_components as html
 from .layout_providing import LayoutProviding
-from .data.data_provider import DataConstants, DataProvider, AppSizeRepresentableData, RepresentableData
+from .data.data_provider import DataProvider, AppSizeRepresentableData, RepresentableData
+from .data.data_constants import DataConstants
 import plotly.express as px
 
 class AppSizesLayoutProvider(LayoutProviding):
