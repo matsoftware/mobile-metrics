@@ -4,4 +4,4 @@ set -e
 
 top=$(dirname $0)
 
-${top}/venv/bin/python3 app/app.py
+${top}/venv/bin/python3 main.py

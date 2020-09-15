@@ -1,11 +1,13 @@
+#!/usr/bin/env python3
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import pandas as pd
-from data.data_provider import DataProvider, DataConstants
-from data.api_data_source import APIDataSource
-from data.models import IPASize
+from .data.data_provider import DataProvider, DataConstants
+from .data.api_data_source import APIDataSource
+from .data.models import IPASize
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -48,5 +50,5 @@ def serve_layout():
 
 app.layout = serve_layout
 
-if __name__ == '__main__':
+def run():
     app.run_server(debug=True)

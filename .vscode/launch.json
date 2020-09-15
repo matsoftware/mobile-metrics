@@ -20,9 +20,9 @@
             "type": "python",
             "name": "Metrics dashboard - debug",
             "request": "launch",
-            "cwd": "${workspaceFolder}/dashboard/app",
+            "cwd": "${workspaceFolder}/dashboard",
             "console": "integratedTerminal",
-            "program": "${workspaceFolder}/dashboard/app/app.py"
+            "program": "${workspaceFolder}/dashboard/main.py"
         }
     ]
 }
