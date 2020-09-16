@@ -3,13 +3,16 @@
 import dash
 from .engine import Engine
 from os import environ
+from .layout.data.config import load 
 
 # Initialize Dash application
+config = load()
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app.title = config.title
 
 # Create and serve layout
-layout = Engine().create_metrics_layout()
+layout = Engine(config=config).create_metrics_layout()
 app.layout = layout.serve_layout
 
 # Run the server
