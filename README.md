@@ -18,7 +18,7 @@ You can change the SQL configuration in [api/app/config/db.config.js](api/app/co
 
 1. Install SQL Server using Docker on Unix: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-linux-2017&pivots=cs1-bash and [Azure Data Studio](https://github.com/microsoft/azuredatastudio/releases/tag/1.21.0) to connect directly to the database
 
-2. Create a `.env` file in the root of the repo with the local database settings:
+2. Create a `.env` file in the `api` folder with the local database settings:
     ```bash
     DB_HOST=localhost
     DB_USER=sa
@@ -55,4 +55,18 @@ The dashboard is built with **Python 3.7.1** using **Dash** and **Plotly Express
 
 ### Pre-requisites
 
-Install all the needed dependencies by running `./install.sh` from the `dashboard` folder.
+1. Install all the needed dependencies by running `./install.sh` from the `dashboard` folder. 
+
+2. Create a `.env` file in the `dashboard` of the repo with the local server settings, including the `API_SECRET` that you set in the backend before:
+    ```bash
+    BACKEND_HOST=http://localhost
+    BACKEND_PORT=3000
+    API_SECRET=my-custom-token
+    DEBUG=true
+    ```
+
+3. Run the server with `./run.sh`
+
+## Scripts
+
+TO-DO
