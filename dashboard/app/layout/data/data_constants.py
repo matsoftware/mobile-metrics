@@ -27,6 +27,10 @@ class DataConstants(object):
         return RepresentableKey('kloc', 'K-Lines Of Code (kLOC)')
 
     @staticmethod
+    def n_of_deps() -> RepresentableKey:
+        return RepresentableKey('n_of_deps', 'Number of dependencies')
+
+    @staticmethod
     def deps_test_loc() -> RepresentableKey:
         return RepresentableKey('deps_test_loc', 'Dependencies Tests LOC')
 
