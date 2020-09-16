@@ -32,18 +32,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: true
       },
-      objc_deps: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-      },
-      abi_stable_deps: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-      },
-      abi_nonstable_deps: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-      },
       metadata: {
         type: Sequelize.STRING,
         allowNull: true

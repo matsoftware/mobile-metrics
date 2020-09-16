@@ -45,9 +45,6 @@ class SourceCodeMetric(TimeSeriesModel):
         repo_dupl_loc: int,
         internal_deps: int,
         external_deps: int,
-        objc_deps: int,
-        abi_stable_deps: int,
-        abi_nonstable_deps: int,
         metadata: str, 
         createdAt: str, 
         updatedAt: str
@@ -62,9 +59,6 @@ class SourceCodeMetric(TimeSeriesModel):
         self.repo_dupl_loc = repo_dupl_loc
         self.internal_deps = internal_deps
         self.external_deps = external_deps
-        self.objc_deps = objc_deps
-        self.abi_stable_deps = abi_stable_deps
-        self.abi_nonstable_deps = abi_nonstable_deps        
 
     @property
     def loc_data(self) -> list:
