@@ -67,6 +67,26 @@ The dashboard is built with **Python 3.7.1** using **Dash** and **Plotly Express
 
 3. Run the server with `./run.sh`
 
+### Configuration
+
+The dashboard can be configured by editing the `config.yml` file:
+
+```yaml
+title: 'Mobile Metrics Dashboard'
+repo_name: 'Main repository'
+footer_text: 'Ⓒ 2020 <author>'
+render_metrics:
+    app_size:
+        download_size_trend: true
+        install_size_trend: true
+    code_metrics:
+        total_loc: true
+        main_repo_loc: true
+        n_of_dependencies: true
+```
+
+The `render_metrics` section will let you configure which chart you want to display.
+
 ## Scripts
 
 TO-DO
