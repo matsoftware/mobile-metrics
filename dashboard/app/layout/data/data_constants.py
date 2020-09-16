@@ -7,6 +7,10 @@ RepresentableKey = namedtuple('RepresentableKey', 'key description')
 class DataConstants(object):
 
     @staticmethod
+    def repo_placeholder() -> str:
+        return "__repo_placeholder__"
+
+    @staticmethod
     def app_name() -> RepresentableKey:
         return RepresentableKey('app_name', 'App name')
 
@@ -40,15 +44,15 @@ class DataConstants(object):
 
     @staticmethod
     def repo_test_loc() -> RepresentableKey:
-        return RepresentableKey('repo_test_loc', 'Main Repo Tests LOC')
+        return RepresentableKey('repo_test_loc', f'{DataConstants.repo_placeholder()} Tests LOC')
 
     @staticmethod
     def repo_prod_loc() -> RepresentableKey:
-        return RepresentableKey('repo_prod_loc', 'Main Repo Production LOC')
+        return RepresentableKey('repo_prod_loc', f'{DataConstants.repo_placeholder()} Production LOC')
 
     @staticmethod
     def repo_dupl_loc() -> RepresentableKey:
-        return RepresentableKey('repo_dupl_loc', 'Main Repo Duplicated LOC')
+        return RepresentableKey('repo_dupl_loc', f'{DataConstants.repo_placeholder()} Duplicated LOC')
 
     @staticmethod
     def internal_deps() -> RepresentableKey:

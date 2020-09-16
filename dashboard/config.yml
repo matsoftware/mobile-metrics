@@ -1,0 +1,9 @@
+repo_name: 'Main repository'
+render_metrics:
+    app_size:
+        download_size_trend: true
+        install_size_trend: true
+    code_metrics:
+        total_loc: true
+        main_repo_loc: true
+        n_of_dependencies: true

@@ -4,3 +4,4 @@ plotly
 backoff==1.10.0
 requests==2.24.0
 python-dotenv
+pyyaml

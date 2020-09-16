@@ -3,6 +3,7 @@
 from .data_sourcing import DataSourcing
 import pandas as pd
 from .models import IPASize, SourceCodeMetric
+from .config import Config
 from collections import namedtuple
 from .data_constants import DataConstants, RepresentableKey
 from typing import List
@@ -12,8 +13,9 @@ AppSizeRepresentableData = namedtuple('AppSizeRepresentableData', 'uncompressed_
 CodeMetricsRepresentableData = namedtuple('CodeMetricsRepresentableData', 'loc dependencies')
 
 class DataProvider(object):
-    def __init__(self, data_source: DataSourcing):
+    def __init__(self, data_source: DataSourcing, config: Config):
         self.data_source = data_source
+        self.config = config
 
     # App Size
 
@@ -70,5 +72,5 @@ class DataProvider(object):
     def __make_representable_data(self, data, repr_keys: List[RepresentableKey], pass_raw_data: bool = False) -> RepresentableData:
         return RepresentableData(
             data if pass_raw_data else pd.DataFrame(data, columns=[r.key for r in repr_keys]),
-            { rk.key : rk.description for rk in repr_keys }
+            { rk.key : rk.description.replace(DataConstants.repo_placeholder(), self.config.repo_name) for rk in repr_keys }
         )
