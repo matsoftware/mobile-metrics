@@ -6,6 +6,7 @@ from .layout_providing import LayoutProviding
 from .data.data_provider import DataProvider, RepresentableData
 from .data.data_constants import DataConstants
 import plotly.graph_objects as go
+from typing import List
 
 class CodeMetricsLayoutProvider(LayoutProviding):
 
@@ -19,44 +20,99 @@ class CodeMetricsLayoutProvider(LayoutProviding):
                 children='Source Code Metrics'
             ),
             dcc.Graph(
+                id='TOTAL-LOC',
+                figure=self.__total_loc_figure(title='Total LOC (Lines of Code) growth', rep_data=loc_data)
+            ),
+            dcc.Graph(
                 id='LOC',
-                figure=self.__loc_figure(title='LOC (Lines of Code) growth', rep_data=loc_data)
-            )
+                figure=self.__main_repo_loc_figure(title='Main repository LOC (Lines of Code) growth', rep_data=loc_data)
+            ),
         ]
 
-    def __loc_figure(self, title: str, rep_data: RepresentableData) -> go.Figure:
+    def __total_loc_figure(self, title: str, rep_data: RepresentableData) -> go.Figure:
         data, legend = rep_data
         x = data[DataConstants.date().key]
+        traces = [
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.deps_test_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.deps_test_loc().key],
+                line_color='darkslateblue',
+                stackgroup='one'
+            ),
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.deps_prod_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.deps_prod_loc().key],
+                line_color='darkblue',
+                stackgroup='one'
+            ),
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.repo_test_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.repo_test_loc().key],
+                line_color='firebrick',
+                stackgroup='one'
+            ),
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.repo_prod_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.repo_prod_loc().key],
+                line_color='red',
+                stackgroup='one'
+            )
+        ]
+        return self.__build_loc_chart(title=title, traces=traces)
 
-        traces = [self.__create_trace(
-            x=x,
-            y=data[representable.key],
-            name=legend[representable.key]
-        ) for representable in [
-            DataConstants.deps_test_loc(),
-            DataConstants.deps_prod_loc(),
-            DataConstants.repo_test_loc(),
-            DataConstants.repo_prod_loc()
-        ]]
 
+    def __main_repo_loc_figure(self, title: str, rep_data: RepresentableData) -> go.Figure:
+        data, legend = rep_data
+        x = data[DataConstants.date().key]
+        traces = [
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.repo_test_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.repo_test_loc().key],
+                line_color='firebrick',
+                stackgroup='one'
+            ),
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.repo_prod_loc().key],
+                hoverinfo='x+y',
+                mode='lines',
+                name=legend[DataConstants.repo_prod_loc().key],
+                line_color='red',
+                stackgroup='one'
+            ),
+            go.Scatter(
+                x=x, 
+                y=data[DataConstants.repo_dupl_loc().key],
+                name=legend[DataConstants.repo_dupl_loc().key],
+                line=dict(color='black', width=5, dash='dash')
+            ),
+        ]
+        return self.__build_loc_chart(title=title, traces=traces)
+
+    def __build_loc_chart(self, title: str, traces: List[go.Scatter]) -> go.Figure:
         fig = go.Figure()
         for trace in traces:
             fig.add_trace(trace)
 
         fig.update_layout(
             title=title,
-            xaxis_title=legend[DataConstants.date().key],
+            xaxis_title=DataConstants.date().description,
             yaxis_title=DataConstants.kloc().description
         )
         
         return fig
-
-    def __create_trace(self, x, y, name, group: str = 'one') -> go.Scatter:
-        return go.Scatter(
-            x=x, 
-            y=y,
-            hoverinfo='x+y',
-            mode='lines',
-            name=name,
-            stackgroup=group
-        )
