@@ -16,7 +16,7 @@ class FooterLayoutProvider(LayoutProviding):
                 style={
                     'textAlign': 'center',
                 }), 
-            html.Label(
+            html.Div(
                 children=['Created with ', html.A('Mobile Metrics', href='<a href="https://github.com/matsoftware/mobile-metrics">Mobile Metrics</a>')],
                 style={
                     'textAlign': 'center',
