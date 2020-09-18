@@ -1,0 +1,30 @@
+[
+    {
+        "model": "CodeMetrics",
+        "data": {
+            "name": "MyMobileApp",
+            "deps_test_loc": 2000,    
+            "deps_prod_loc": 3500,
+            "repo_test_loc": 1100,
+            "repo_prod_loc": 2400,
+            "repo_dupl_loc": 200,
+            "internal_deps": 5,
+            "external_deps": 10,
+            "createdAt": "2020-06-22T15:40:05"
+        }
+    },
+    {
+        "model": "CodeMetrics",
+        "data": {
+            "name": "MyMobileApp",
+            "deps_test_loc": 2100,    
+            "deps_prod_loc": 3600,
+            "repo_test_loc": 1700,
+            "repo_prod_loc": 2500,
+            "repo_dupl_loc": 210,
+            "internal_deps": 6,
+            "external_deps": 11,
+            "createdAt": "2020-07-14T05:40:05"
+        }
+    }
+]

@@ -24,6 +24,7 @@
     "passport": "^0.4.1",
     "passport-headerapikey": "^1.2.2",
     "sequelize": "^6.3.5",
+    "sequelize-fixtures": "^1.2.0",
     "tedious": "^9.2.1"
   },
   "devDependencies": {

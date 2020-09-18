@@ -1,0 +1,20 @@
+[
+    {
+        "model": "AppSize",
+        "data": {
+            "name": "MyMobileApp",
+            "total_uncompressed_size": 127,    
+            "total_universal_size": 348,
+            "createdAt": "2020-07-14T05:40:05"
+        }
+    },
+    {
+        "model": "AppSize",
+        "data": {
+            "name": "MyMobileApp",
+            "total_uncompressed_size": 130,    
+            "total_universal_size": 350,
+            "createdAt": "2020-06-22T05:40:05"
+        }
+    }
+]
