@@ -29,15 +29,13 @@ function loadFixtures() {
 
     models = {
         'AppSize': db.AppSize,
-        'CodeMetrics': db.CodeMetrics,
-        'User': db.User
+        'CodeMetrics': db.CodeMetrics
     }    
 
     sequelize_fixtures.loadFiles([
         // Define here the list of fixture files you want to load
         'app/fixtures/app_size.json',
-        'app/fixtures/code_metrics.json',
-        'app/fixtures/user.json'
+        'app/fixtures/code_metrics.json'
     
     ], models).then(function(){
         // Post-launch actions, if needed

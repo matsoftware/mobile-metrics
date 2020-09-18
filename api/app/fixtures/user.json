@@ -1,9 +1,0 @@
-[
-    {
-        "model": "User",
-        "data": {
-            "name": "Current user",
-            "token": "my-custom-token"
-        }
-    }
-]
