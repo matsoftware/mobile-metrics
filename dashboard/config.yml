@@ -1,5 +1,5 @@
 title: 'Mobile Metrics Dashboard'
-repo_name: 'Main repository'
+repo_name: '<main repository>'
 footer_text: 'Ⓒ 2020 <author>'
 render_metrics:
     app_size:

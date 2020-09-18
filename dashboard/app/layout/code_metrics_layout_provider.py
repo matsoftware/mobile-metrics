@@ -43,7 +43,7 @@ class CodeMetricsLayoutProvider(LayoutProviding):
         return [
             dcc.Graph(
                 id='REPO-LOC',
-                figure=self.__main_repo_loc_figure(title='Main repository LOC (Lines of Code) growth', rep_data=loc_data)
+                figure=self.__main_repo_loc_figure(title=f'{self.config.repo_name} LOC (Lines of Code) growth', rep_data=loc_data)
             )
         ]
 
