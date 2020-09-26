@@ -1,0 +1,6 @@
+[submodule "mobile-metrics-api"]
+	path = mobile-metrics-api
+	url = https://github.com/matsoftware/mobile-metrics-api
+[submodule "mobile-metrics-dashboard"]
+	path = mobile-metrics-dashboard
+	url = https://github.com/matsoftware/mobile-metrics-dashboard
