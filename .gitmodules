@@ -4,3 +4,6 @@
 [submodule "mobile-metrics-dashboard"]
 	path = mobile-metrics-dashboard
 	url = https://github.com/matsoftware/mobile-metrics-dashboard
+[submodule "mobile-metrics-scripts"]
+	path = mobile-metrics-scripts
+	url = git@github.com:matsoftware/mobile-metrics-scripts.git

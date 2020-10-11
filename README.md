@@ -6,7 +6,7 @@ It consists of three main parts:
 
 - **[API](https://github.com/matsoftware/mobile-metrics-api)**: REST API to interact with the database
 - **[Dashboard](https://github.com/matsoftware/mobile-metrics-dashboard)**: Web frontend to visualize the reports over time
-- **Scripts**: Set of Python scripts to analyze mobile app metrics and to store data // TODO
+- **[Scripts](https://github.com/matsoftware/mobile-metrics-scripts)**: Set of Python scripts to analyze mobile app metrics and to store data
 
 # Contact
 
